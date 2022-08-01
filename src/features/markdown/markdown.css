@@ -1,0 +1,35 @@
+.markdown {
+    grid-template-rows: auto 1fr;
+    height: 100%;
+}
+
+
+.markdown-container {
+  height: 100%;
+}
+
+.markdown-text {
+    font-size: 1.5rem;
+    border: none;
+    background-color: transparent;
+    outline: none;
+    padding: 2rem 2rem;
+    height: 100%;
+    width: 100%;
+}
+
+.markdown-header {
+    text-transform: uppercase;
+}
+
+.markdown--col--2 {
+    grid-column: 2 / 3;
+}
+
+.dark-markdown {
+    background-color: #1d1f22;
+    color: #f5f5f5;
+}
+.dark-text {
+    color: #e4e4e4;
+}

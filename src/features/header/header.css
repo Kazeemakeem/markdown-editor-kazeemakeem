@@ -1,0 +1,80 @@
+
+.hidden {
+    display: none;
+}
+
+.bar-container {
+    background-color: #2b2d31;
+    grid-area: header;
+    padding-right: 1rem;
+}
+
+.close-menu-btn,
+.open-menu-btn {
+    align-content: center;
+}
+
+.header-bar {
+    flex-grow: 1;
+    justify-content: space;
+}
+
+.box {
+    height: 4.5rem;
+    width: 4rem;
+    background-color: #35393f;
+}
+
+.title {
+    color: #f5f5f5;
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    letter-spacing: .25rem;
+    padding: 0 2rem;
+}
+
+.tab-bar-container {
+    flex-grow: 1;
+}
+
+.tab-bar {
+    padding: .4rem 0;
+    flex: 1;
+    justify-content: space-between;
+}
+
+.tab-details {
+    font-size: 1.2rem;
+    text-align: left;
+    color: #f5f5f5;
+}
+
+.tab-icon {
+    border-left: 2px solid #7c8187;
+    padding-left: 1rem;
+}
+
+.full-bar {
+    grid-column: 1 / -1;
+}
+
+.header-col--2 {
+    grid-column: 2 / -1;
+}
+
+.doc-action {
+    gap: 1rem;
+    align-content: center;
+}
+
+.delete-btn {
+    justify-content: center;
+}
+
+.save-text {
+    margin-left: .4rem;
+}
+
+.save-changes-btn.big-screen {
+    width: 13rem;
+}

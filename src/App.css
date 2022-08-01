@@ -1,0 +1,155 @@
+.App {
+  text-align: center;
+  grid-template-rows: auto 1fr;
+  grid-template-areas: 'header' 'main';
+  height: 100vh;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.faint {
+  opacity: 0.7;
+}
+
+.grid {
+  display: grid;
+}
+
+.grid--3--cols {
+  grid-template-columns: 1fr 6fr;
+}
+
+.grid--2--cols {
+  grid-template-columns: 1fr;
+}
+
+.flexed {
+  display: flex;
+  align-items: center;
+}
+
+.icon-centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.left-indent {
+  color: #7c8187;
+  font-size: 1.3rem;
+  background-color: #f5f5f5;
+  text-align: left;
+  padding: .5rem 1rem;
+  height: 3rem;
+}
+
+.dark-header {
+  background-color: #343a40;
+  color: #f5f5f5;
+}
+
+.dark-box {
+  margin-right: .5rem;
+  height: 2.5rem;
+}
+
+.btn {
+  color: #f5f5f5;
+  height: 30px;
+  border-radius: 4px;
+  background-color: #e46643;
+  border: none;
+  cursor: pointer;
+}
+
+.btn:hover,
+.btn:active {
+  background-color: #f39765;
+}
+
+.name-title {
+  color: #7c8187;
+}
+
+.doc-name {
+  font-weight: 400;
+}
+
+.doc-name:hover {
+  color: #f39765;
+}
+
+.small-screen {
+  display: none;
+}
+
+
+/* ============ MEDIA QUERY =============*/
+
+/*==================================*/
+/* BELOW 800px (Small Screens) */
+/* ================================== */
+
+@media(max-width: calc(800em / 16)) {
+
+  html {
+    font-size: 52.5%;
+  }
+
+  .main {
+    grid-template-rows: 1fr 1fr;
+  }
+
+  .big-screen {
+    display: none;
+  }
+
+  .small-screen {
+    display: inline-block;
+    width: 8rem;
+  }
+
+  .App .markup {
+    border-left: none;
+    border-bottom: 4px solid #e46643;
+    grid-column: 1 / 3;
+    grid-row: 1 / 2;
+ 
+  }
+
+  .App .markup-container {
+    height: 45vh;
+  }
+
+  .markdown {
+    grid-column: 1 / 3;
+  }
+
+    .save-changes-btn.small-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
