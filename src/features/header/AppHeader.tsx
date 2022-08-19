@@ -3,9 +3,9 @@ import {moonIcon, sunIcon, deleteIcon, closeIcon, menuIcon, documentIcon, SaveIc
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import './header.css'
 import { updateDocMarkdown, updateDocMarkup } from '../documents/documentsSlice'
-import { markdownArr } from '../markdown/MarkdownSliceView'
+// import { markdownArr } from '../markdown/MarkdownSliceView'
 import { showModal, showMenu, hideMenu, closeButtonClicked } from './headerSlice'
-import { nodeArr } from '../markup/markupSlice'
+// import { nodeArr } from '../markup/markupSlice'
 
 
 const AppHeader = () => {
@@ -13,10 +13,13 @@ const AppHeader = () => {
     const dispatch = useAppDispatch()
     const currentDocName = useAppSelector((state) => state.header).currentDocName
     const documents = useAppSelector((state) => state.documents)
+    const newMarkdownArr = useAppSelector((state) => state.dataArrays.newMarkdownArr)
+    // const nodeArr = useAppSelector((state) => state.markup.nodeArr)
+    const markupArr = useAppSelector((state) => state.dataArrays.markup)
 
     const handleSaveChanges = () => {
-      dispatch(updateDocMarkdown({key:currentDocName, data:{markdown: markdownArr}}))
-      dispatch(updateDocMarkup({key:currentDocName, data:{markup: nodeArr}}))
+      dispatch(updateDocMarkdown({key:currentDocName, data:{markdown: newMarkdownArr}}))
+      dispatch(updateDocMarkup({key:currentDocName, data:{markup: markupArr}}))
     }
 
     const handleDelete = (event:React.MouseEvent<HTMLDivElement>): void => {
@@ -52,8 +55,8 @@ const AppHeader = () => {
 
             <div className='doc-action flexed'>
               <div className='delete-btn flexed' onClick={handleDelete}>{deleteIcon}</div>
-              <button className='btn save-changes-btn icon-centered big-screen' onClick={handleSaveChanges}>{SaveIcon}<span className='save-text'>Save Changes</span></button>
-              <button className='btn save-changes-btn icon-centered small-screen' onClick={handleSaveChanges}>{SaveIcon}<span className='save-text'>Save</span></button>
+              <button className='btn save-changes-btn icon-centered' onClick={handleSaveChanges}>{SaveIcon}<span className='save-text'>Save <span className='btn-span'>Changes</span></span></button>
+              {/* <button className='btn save-changes-btn icon-centered small-screen' onClick={handleSaveChanges}>{SaveIcon}<span className='save-text'>Save</span></button> */}
             </div>
           </div>
         </div>)}

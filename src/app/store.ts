@@ -1,8 +1,8 @@
 import React from 'react'
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
 import  documentsReducer  from '../features/documents/documentsSlice'
-import  markdownReducer from '../features/markdown/markdownSlice'
-import  markupReducer from '../features/markup/markupSlice'
+import  dataArraysReducer from '../features/dataArrays/dataArraysSlice'
+// import  markupReducer from '../features/markup/markupSlice'
 import  themeReducer from '../features/theme/themeSlice'
 import  headerReducer from '../features/header/headerSlice'
 import { loadState } from '../localStorage'
@@ -15,9 +15,9 @@ const store = configureStore({
     devTools: true,
     reducer: {
         documents: documentsReducer,
-        markdown: markdownReducer,
+        dataArrays: dataArraysReducer,
         theme: themeReducer,
-        markup: markupReducer,
+        // markup: markupReducer,
         header: headerReducer
     },
 

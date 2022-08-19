@@ -4,13 +4,14 @@ import { addNewDoc } from './documentsSlice'
 import './document.css'
 import { documentIcon, toggleLeftIcon, toggleRightIcon } from '../icons/Icons'
 import { updateTab, closeButtonClicked } from '../header/headerSlice'
-import { updateContent } from '../markdown/markdownSlice'
+import { updateMarkdown } from '../dataArrays/dataArraysSlice'
 import { Moon, Sun } from "phosphor-react"
 import { activateDarkMode } from '../theme/themeSlice'
-import { convertContent, updateMarkup } from '../markup/markupSlice'
+import { updateMarkup } from '../dataArrays/dataArraysSlice'
+import { convertContent } from '../../utils/convertContent'
 
- export let currentDocNameTab:string = ''
- export let currentDocMarkdown: string[] = []
+//  export let currentDocNameTab:string = ''
+//  export let currentDocMarkdown: string[] = []
 
 const DocumentSliceView = () => {
   const [value, setValue] = useState('')
@@ -18,6 +19,9 @@ const DocumentSliceView = () => {
   const dispatch = useAppDispatch()
   const documents = useAppSelector((state) => state.documents)
   const newDocName: string = value
+  const reformedMarkdownArr = useAppSelector(state => state.dataArrays.reformedMarkdownArr)
+
+  console.log('document reformed', reformedMarkdownArr)
 
   const newDocArg = {key: newDocName, data: {
     dateCreated: new Date(),
@@ -34,7 +38,11 @@ const DocumentSliceView = () => {
   const handleCreateNewDoc = () => {
     dispatch(closeButtonClicked(false))
     setHideNewName(false)
-    textInputRef.current?.focus()
+
+    setTimeout(()=>{
+      textInputRef.current?.focus()
+    }, 500)
+    
   }
 
   const handleNameSubmit = (event:React.FormEvent<HTMLFormElement>) => {
@@ -46,16 +54,21 @@ const DocumentSliceView = () => {
 
   const addToTabBar = (listItem:string) => {
     dispatch(updateTab(listItem))
-    dispatch(updateContent(documents[listItem].markdown))
-    dispatch(convertContent())
+    dispatch(updateMarkdown(documents[listItem].markdown))
   }
+
+  const updateRenderedMarkup = (docName:string, savedDocMarkup:string[]) => {
+    addToTabBar(docName)
+    dispatch(updateMarkup(savedDocMarkup))
+  }
+
+  // convertContent(reformedMarkdownArr)
 
   const currentDocName = useAppSelector(state => state.header.currentDocName)
   const docList = Array.from(Object.keys(documents)).reverse().map((item) => {
     const date = documents[item].dateCreated.toString().slice(0,10)
     return <li key={item} className='doc' onClick={() => {
-      addToTabBar(item)
-      dispatch(updateMarkup(documents[currentDocName].markup))
+        updateRenderedMarkup(item, documents[item].markup)
       }}>
       <div className='icon-centered dark-box'>{documentIcon}</div>
       <div className='doc-details'>
@@ -76,8 +89,8 @@ const DocumentSliceView = () => {
       <div className={`sidebar flexed ${ modalShowUpdate ? 'faint' : '' }`}>
         <div className='document-container flexed'>
           <h6 className=' header document-header'>My Documents</h6>
-          <button className='btn new-doc-btn big-screen' onClick={handleCreateNewDoc}>+ New Document</button>
-          <button className='btn new-doc-btn small-screen' onClick={handleCreateNewDoc}>+ New</button>
+          <button className='btn new-doc-btn' onClick={handleCreateNewDoc}>+ New <span className='btn-span'>Document</span></button>
+          {/* <button className='btn new-doc-btn small-screen' onClick={handleCreateNewDoc}>+ New</button> */}
           <form onSubmit={handleNameSubmit}>
               <input ref = {textInputRef} className= {`new-name ${ hideNewName || menuClosed ? 'hidden' : ''}`} 
               type='text' value={value}

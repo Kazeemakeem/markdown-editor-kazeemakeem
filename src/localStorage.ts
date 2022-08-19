@@ -1,13 +1,11 @@
 import { docInitStateType } from './features/documents/documentsSlice'
-import { markdownInitStateType } from './features/markdown/markdownSlice'
-import { markupInitStateType } from './features/markup/markupSlice'
+import { markdownInitStateType } from './features/dataArrays/dataArraysSlice'
 import { themeInitStateType } from './features/theme/themeSlice'
 import { headerInitStateType } from './features/header/headerSlice'
 
 type ReduxStateType = {
     documents: docInitStateType;
-    markdown: markdownInitStateType;
-    markup: markupInitStateType;
+    dataArrays: markdownInitStateType;
     theme: themeInitStateType;
     header: headerInitStateType;
 }
