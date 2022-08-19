@@ -1,7 +1,7 @@
 import React from 'react'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import { deleteDoc } from '../documents/documentsSlice'
-import { hideModal } from '../header/headerSlice'
+import { hideModal, updateTab } from '../header/headerSlice'
 import './modal.css'
 
 type GameModalProps = {
@@ -31,6 +31,7 @@ const DeleteModal = () => {
               <button className='btn btn--modal btn--modal--confirm'onClick={() => {
                   dispatch(hideModal())
                   dispatch(deleteDoc({key:currentDocName}))
+                  dispatch(updateTab(''))
                   }}>Confirm</button>
           </div>
         </div>

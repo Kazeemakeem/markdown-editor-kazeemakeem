@@ -13,7 +13,7 @@ const MarkdownSliceView = () => {
 
   const markdownRef = useRef<HTMLTextAreaElement>(null)
   const currDocName = useAppSelector(state => state.header.currentDocName)
-  const currMarkdown = useAppSelector((state) => state.documents[currDocName].markdown).join('\n')
+  const currMarkdown = useAppSelector((state) => currDocName ? state.documents[currDocName].markdown : []).join('\n')
 
   const handleMarkdownUpdate = (event:React.ChangeEvent<HTMLTextAreaElement>): void => {
     const newMarkdownArr = currMarkdown ===  markdownRef.current!.value ? currMarkdown.split('\n') : markdownRef.current!.value.split('\n')
